@@ -14,10 +14,8 @@ parser.add_argument('--ranges', required=True, help='Comma-separated brand range
 
 args = parser.parse_args()
 
-aws_key = args.aws_access_key_id
-aws_sec = args.aws_secret_access_key
-print(aws_key)
-print(aws_sec)
+print(f"AWS Access Key ID: {aws_access_key_id}")
+print(f"AWS Secret Access Key: {aws_secret_access_key}")
 
 try:
     # Initialize boto3 client for CloudWatch
