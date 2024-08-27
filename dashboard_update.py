@@ -11,9 +11,10 @@ parser.add_argument('--region-name', default='us-west-2', help='AWS Region Name'
 parser.add_argument('--dashboard-name', required=True, help='Original Dashboard Name')
 parser.add_argument('--ranges', required=True, help='Comma-separated brand ranges (e.g., l-m,n-p)')
 
-org_dashboard_name = args.dashboard_name
 
 args = parser.parse_args()
+
+org_dashboard_name = args.dashboard_name
 
 # Initialize boto3 client for CloudWatch
 try:
