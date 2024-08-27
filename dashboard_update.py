@@ -15,15 +15,18 @@ parser.add_argument('--ranges', required=True, help='Comma-separated brand range
 args = parser.parse_args()
 
 org_dashboard_name = args.dashboard_name
+aws_access_key_id = args.aws_access_key_id
+aws_secret_access_key = args.aws_secret_access_key
+region_name = args.region_name
 
 # Initialize boto3 client for CloudWatch
 try:
     # Initialize boto3 client for CloudWatch
     cloudwatch_client = boto3.client(
         'cloudwatch',
-        region_name=args.region_name,
-        aws_access_key_id=args.aws_access_key_id,
-        aws_secret_access_key=args.aws_secret_access_key
+        region_name=region_name,
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
     )
 except Exception as e:
     print(f"Error initializing boto3 client: {e}")
