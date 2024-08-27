@@ -19,18 +19,13 @@ aws_access_key_id = args.aws_access_key_id
 aws_secret_access_key = args.aws_secret_access_key
 region_name = args.region_name
 
-# Initialize boto3 client for CloudWatch
-try:
-    # Initialize boto3 client for CloudWatch
-    cloudwatch_client = boto3.client(
-        'cloudwatch',
-        region_name=region_name,
-        aws_access_key_id=aws_access_key_id,
-        aws_secret_access_key=aws_secret_access_key
-    )
-except Exception as e:
-    print(f"Error initializing boto3 client: {e}")
-    sys.exit(1)
+session = boto3.Session(
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=region_name
+)
+
+cloudwatch_client = session.client('cloudwatch')
 
 # Lists to store widgets for each new dashboard
 widgets_by_range = {}
