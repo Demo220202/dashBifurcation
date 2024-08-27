@@ -14,6 +14,9 @@ parser.add_argument('--ranges', required=True, help='Comma-separated brand range
 
 args = parser.parse_args()
 
+print(args.aws_access_key_id)
+print(args.aws_secret_access_key)
+
 try:
     # Initialize boto3 client for CloudWatch
     cloudwatch_client = boto3.client(
