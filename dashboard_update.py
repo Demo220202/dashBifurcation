@@ -14,12 +14,17 @@ parser.add_argument('--ranges', required=True, help='Comma-separated brand range
 args = parser.parse_args()
 
 # Initialize boto3 client for CloudWatch
-cloudwatch_client = boto3.client(
-    'cloudwatch',
-    region_name=args.region_name,
-    aws_access_key_id=args.aws_access_key_id,
-    aws_secret_access_key=args.aws_secret_access_key
-)
+try:
+    # Initialize boto3 client for CloudWatch
+    cloudwatch_client = boto3.client(
+        'cloudwatch',
+        region_name=args.region_name,
+        aws_access_key_id=args.aws_access_key_id,
+        aws_secret_access_key=args.aws_secret_access_key
+    )
+except Exception as e:
+    print(f"Error initializing boto3 client: {e}")
+    sys.exit(1)
 
 # Lists to store widgets for each new dashboard
 widgets_by_range = {}
