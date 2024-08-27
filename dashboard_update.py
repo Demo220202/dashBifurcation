@@ -11,6 +11,8 @@ parser.add_argument('--region-name', default='us-west-2', help='AWS Region Name'
 parser.add_argument('--dashboard-name', required=True, help='Original Dashboard Name')
 parser.add_argument('--ranges', required=True, help='Comma-separated brand ranges (e.g., l-m,n-p)')
 
+org_dashboard_name = args.dashboard_name
+
 args = parser.parse_args()
 
 # Initialize boto3 client for CloudWatch
@@ -81,7 +83,7 @@ def create_dashboard(dashboard_name, widgets):
 ranges = [tuple(r.split('-')) for r in args.ranges.split(',')]
 
 # Update widgets for each dashboard range
-update_widgets_by_range(args.dashboard_name, ranges)
+update_widgets_by_range(org_dashboard_name, ranges)
 
 # Create the new dashboards for each range
 for start, end in ranges:
